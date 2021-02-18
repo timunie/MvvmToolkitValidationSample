@@ -14,6 +14,10 @@
             <TextBox Text="{Binding StringMayNotBeEmpty, UpdateSourceTrigger=PropertyChanged}" mah:TextBoxHelper.Watermark="Type a letter and delete it."/>
         </mah:MetroHeader>
 
+        <mah:MetroHeader Header="This field should show a different message than the one above" Margin="5">
+            <TextBox Text="{Binding AnotherRequiredField, UpdateSourceTrigger=PropertyChanged}" mah:TextBoxHelper.Watermark="Type a letter and delete it."/>
+        </mah:MetroHeader>
+        
         <TextBlock Margin="5">The below numbers define a range in which the third number sould lay. Manipulate the bounds and notice that there is no update.</TextBlock>
         
         <mah:MetroHeader Header="Lower-Bound" Margin="5">
@@ -26,6 +30,13 @@
 
         <mah:MetroHeader Header="A value in Range" Margin="5">
             <mah:NumericUpDown Value="{Binding ValueMayNotExceedBounds, UpdateSourceTrigger=PropertyChanged}" />
+        </mah:MetroHeader>
+
+        <mah:MetroHeader Header="This tooltip shows all messages. Every item is visible twice.">
+            <TextBox Text="{Binding HasErrors, Mode=OneWay, ValidatesOnNotifyDataErrors=False, StringFormat='Is it true that we have issues? -- {0}'}" 
+                     
+                     IsReadOnly="True"
+                     Tag="{Binding}" />
         </mah:MetroHeader>
     </StackPanel>
 </mah:MetroWindow>

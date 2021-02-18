@@ -9,13 +9,27 @@ namespace MvvmToolkitValidationSample
 {
     public class ViewModel : ObservableValidator
     {
+        public ViewModel()
+        {
+            ValidateAllProperties();
+        }
 
         private string _StringMayNotBeEmpty;
-        [Required(AllowEmptyStrings = false, ErrorMessage = "This field may not be empty.")]
+        [Required(AllowEmptyStrings = false, ErrorMessage = "This field {0} may not be empty.")]
         public string StringMayNotBeEmpty
         {
             get { return _StringMayNotBeEmpty; }
             set { SetProperty(ref _StringMayNotBeEmpty, value, true); }
+        }
+
+
+
+        private string _AnotherRequiredField;
+        [Required(AllowEmptyStrings = false, ErrorMessage = "This field {0} may not be empty.")]
+        public string AnotherRequiredField
+        {
+            get { return _AnotherRequiredField; }
+            set { SetProperty(ref _AnotherRequiredField, value, true); }
         }
 
 
@@ -32,14 +46,14 @@ namespace MvvmToolkitValidationSample
         public int LowerBound
         {
             get { return _LowerBound; }
-            set { SetProperty(ref _LowerBound, value, true); }
+            set { SetProperty(ref _LowerBound, value, true); ValidateProperty(ValueMayNotExceedBounds, nameof(ValueMayNotExceedBounds)); }
         }
 
         private int _UpperBound = 10;
         public int UpperBound
         {
             get { return _UpperBound; }
-            set { SetProperty(ref _UpperBound, value, true); }
+            set { SetProperty(ref _UpperBound, value, true); ValidateProperty(ValueMayNotExceedBounds, nameof(ValueMayNotExceedBounds)); }
         }
     }
 
