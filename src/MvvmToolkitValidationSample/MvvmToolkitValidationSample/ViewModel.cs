@@ -12,6 +12,7 @@ namespace MvvmToolkitValidationSample
         public ViewModel()
         {
             ValidateAllProperties();
+            ErrorsChanged += (_, __) => OnPropertyChanged(nameof(AllErrors));
         }
 
         private string _StringMayNotBeEmpty;
@@ -55,6 +56,8 @@ namespace MvvmToolkitValidationSample
             get { return _UpperBound; }
             set { SetProperty(ref _UpperBound, value, true); ValidateProperty(ValueMayNotExceedBounds, nameof(ValueMayNotExceedBounds)); }
         }
+
+        public IEnumerable<object> AllErrors => GetErrors(null);
     }
 
     public class DynamicRangeAttribute : ValidationAttribute

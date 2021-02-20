@@ -12,6 +12,7 @@
     <mah:MetroWindow.DataContext>
         <local:ViewModel />
     </mah:MetroWindow.DataContext>
+    
     <StackPanel>
         <mah:MetroHeader Margin="5" Header="This field should show a message on statup">
             <TextBox mah:TextBoxHelper.Watermark="Type a letter and delete it." Text="{Binding StringMayNotBeEmpty, UpdateSourceTrigger=PropertyChanged}" />
@@ -38,12 +39,14 @@
         <mah:MetroHeader Header="This tooltip shows all messages. Every item is visible twice.">
             <TextBox Text="{Binding HasErrors, Mode=OneWay, ValidatesOnNotifyDataErrors=False, StringFormat='Is it true that we have issues? -- {0}'}"
                      IsReadOnly="True"
-                     Tag="{Binding ValidatesOnDataErrors=False}">
+                     Tag="{Binding}">
                 <Validation.ErrorTemplate>
                     <ControlTemplate>
                         <DockPanel>
                             <ItemsControl 
-                                ToolTip="{Binding ElementName=ErrorAdorner, Path=AdornedElement.(Validation.Errors).Count}" DockPanel.Dock="Bottom" ItemsSource="{Binding ElementName=ErrorAdorner, Path=AdornedElement.(Validation.Errors)}">
+                                ToolTip="{Binding ElementName=ErrorAdorner, Path=AdornedElement.(Validation.Errors).Count}" 
+                                DockPanel.Dock="Bottom" 
+                                ItemsSource="{Binding ElementName=ErrorAdorner, Path=AdornedElement.DataContext.AllErrors}">
                                 <ItemsControl.ItemTemplate>
                                     <DataTemplate>
                                         <StackPanel Orientation="Horizontal">
@@ -62,7 +65,7 @@
                                                     X
                                                 </TextBlock>
                                             </Grid>
-                                            <TextBlock Text="{Binding ErrorContent}"
+                                            <TextBlock Text="{Binding ErrorMessage}"
                                                        Margin="2,0,0,0"
                                                        Foreground="Red" />
                                         </StackPanel>
