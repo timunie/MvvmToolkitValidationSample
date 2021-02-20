@@ -1,4 +1,4 @@
-﻿using Microsoft.Toolkit.Mvvm.ComponentModel;
+﻿using Microsoft.Toolkit.Mvvm.ComponentModel.Test;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
