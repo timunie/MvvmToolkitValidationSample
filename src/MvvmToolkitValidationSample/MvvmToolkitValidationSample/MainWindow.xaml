@@ -44,28 +44,27 @@
         <ControlTemplate>
             <DockPanel>
                 <ItemsControl DockPanel.Dock="Bottom"
-                                ItemsSource="{Binding ElementName=ErrorAdorner, Path=AdornedElement.DataContext.AllErrors}"
-                                ToolTip="{Binding ElementName=ErrorAdorner, Path=AdornedElement.(Validation.Errors).Count}">
+                             ItemsSource="{Binding ElementName=ErrorAdorner, Path=AdornedElement.DataContext.AllErrors}">
                     <ItemsControl.ItemTemplate>
                         <DataTemplate>
                             <StackPanel Orientation="Horizontal">
                                 <Grid Width="12" Height="12">
                                     <Ellipse Width="12"
-                                                Height="12"
-                                                HorizontalAlignment="Center"
-                                                VerticalAlignment="Center"
-                                                Fill="Red" />
+                                            Height="12"
+                                            HorizontalAlignment="Center"
+                                            VerticalAlignment="Center"
+                                            Fill="Red" />
                                     <TextBlock Text="X"
-                                                HorizontalAlignment="Center"
-                                                VerticalAlignment="Center"
-                                                FontSize="8"
-                                                FontWeight="Heavy"
-                                                Foreground="White"
-                                                TextAlignment="Center" />
+                                            HorizontalAlignment="Center"
+                                            VerticalAlignment="Center"
+                                            FontSize="8"
+                                            FontWeight="Heavy"
+                                            Foreground="White"
+                                            TextAlignment="Center" />
                                 </Grid>
                                 <TextBlock Text="{Binding ErrorMessage}"
-                                            Margin="2,0,0,0"
-                                            Foreground="Red" />
+                                        Margin="2,0,0,0"
+                                        Foreground="Red" />
                             </StackPanel>
                         </DataTemplate>
                     </ItemsControl.ItemTemplate>
