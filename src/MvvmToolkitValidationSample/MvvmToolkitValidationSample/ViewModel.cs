@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace MvvmToolkitValidationSample
 {
@@ -54,6 +55,29 @@ namespace MvvmToolkitValidationSample
         {
             get { return _UpperBound; }
             set { SetProperty(ref _UpperBound, value, true); ValidateProperty(ValueMayNotExceedBounds, nameof(ValueMayNotExceedBounds)); }
+        }
+
+
+        private int _ValidateAsyncExample;
+        [CustomValidation(typeof(ViewModel), nameof(LongRunningValidation))]
+        public int ValidateAsyncExample
+        {
+            get { return _ValidateAsyncExample; }
+            set { SetProperty(ref _ValidateAsyncExample, value, true); }
+        }
+
+
+        public static ValidationResult LongRunningValidation(int value, ValidationContext _)
+        {
+            if (value % 2 == 0)
+            {
+                return ValidationResult.Success;
+            }
+            else
+            {
+                Task.Delay(1000).Wait();
+                return new ValidationResult("The Value must be even.");
+            }
         }
     }
 

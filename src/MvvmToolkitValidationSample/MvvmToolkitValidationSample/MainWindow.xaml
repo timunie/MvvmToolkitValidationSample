@@ -7,7 +7,7 @@
                  xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
                  Title="MainWindow"
                  Width="800"
-                 Height="450"
+                 Height="500"
                  mc:Ignorable="d">
     <mah:MetroWindow.DataContext>
         <local:ViewModel />
@@ -34,7 +34,11 @@
         <mah:MetroHeader Margin="5" Header="A value in Range">
             <mah:NumericUpDown Value="{Binding ValueMayNotExceedBounds, UpdateSourceTrigger=PropertyChanged}" />
         </mah:MetroHeader>
-
+        
+        <mah:MetroHeader Margin="5" Header="This is a long running validation.">
+            <mah:NumericUpDown Value="{Binding ValidateAsyncExample, UpdateSourceTrigger=PropertyChanged}" />
+        </mah:MetroHeader>
+        
         <mah:MetroHeader Header="This tooltip shows all messages. Every item is visible twice.">
             <TextBox Text="{Binding HasErrors, Mode=OneWay, ValidatesOnNotifyDataErrors=False, StringFormat='Is it true that we have issues? -- {0}'}"
                      IsReadOnly="True"
@@ -76,5 +80,7 @@
                 </Validation.ErrorTemplate>
             </TextBox>
         </mah:MetroHeader>
+
+       
     </StackPanel>
 </mah:MetroWindow>
